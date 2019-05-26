@@ -1,0 +1,188 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 0;
+    margin: 0;
+    background-color: whitesmoke;
+}
+
+#maptext{
+    color: rgba(82, 45, 45, 0.856);
+}
+
+/* Global */
+.container{
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+
+header{
+    background: rgba(167, 112, 9, 0.815);
+    color: #ffffff;
+    padding-top: 10px; 
+    min-height: 20px;
+    border-bottom: #4b8683c9 2px solid;
+}
+
+.link{
+    color: #ffffff;
+}
+
+header #branding{
+    float: left;
+}
+
+header #branding h1{
+    margin-bottom: 10;
+}
+
+#showcase{
+    min-height: 280px;
+    background: url("../../image/motherdaughter.jpeg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-bottom: #4b8683c9 2px solid;
+}
+
+#showcase3{
+    min-height: 280px;
+    background: url("../../image/doctors.jpeg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-bottom: #4b8683c9 2px solid;
+}
+
+#showcase4{
+    min-height: 280px;
+    background: url("../../image/scopeandgraphs.jpeg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-bottom: #4b8683c9 2px solid;
+}
+
+#showcase5{
+    min-height: 280px;
+    background: url("../../image/cancercell.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-bottom: #4b8683c9 2px solid;
+}
+
+#showcase p{
+    color: rgb(168, 118, 118);
+    padding-top: 60px;
+    padding-left: 60px;
+}
+#mapid{
+    padding-top: 10px;
+    padding-right: 0;
+}
+
+#navbar-row{
+    background: whitesmoke;
+}
+
+#footer{
+    background: rgba(167, 112, 9, 0.815);
+    position: relative;
+    text-align: center;
+}
+.tableauPlaceholder{
+    min-height: 660px;
+    min-width: 940px;
+}
+
+#filters{
+    padding-left: 0;
+    min-width: 150px;
+}
+.btn {
+    background-color: teal;
+    position: relative;
+    color: #ffffff;
+    min-width: 150px;
+}
+#table-area th {
+    text-align: center;
+}
+
+#table-area th:first-child,
+#table-area th:nth-child(2),
+#table-area th:nth-child(6) {
+  min-width: 70px;
+}
+/* input placeholder color changes */
+.form-control::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #8e979f;
+  }
+  
+  .form-control::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #8e979f;
+  }
+  
+  .form-control:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #8e979f;
+  }
+  
+  .form-control:-moz-placeholder {
+    /* Firefox 18- */
+    color: #8e979f;
+  }
+  
+  /* media queries which will only be activated at specific screen sizes */
+  @media (max-width: 800px) {
+    #table-area td {
+      font-size: 1em;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    #table-area thead {
+      display: none;
+    }
+  
+    #table-area tr td:first-child {
+      font-size: 1.8em;
+      font-weight: bold;
+      background: #1b3146;
+    }
+  
+    #table-area tr td:last-child {
+      margin-bottom: 20px;
+    }
+  
+    #table-area tr td:last-child::after {
+      display: block;
+      width: 100%;
+      height: 1px;
+      margin-top: 20px;
+      content: " ";
+      background: aliceblue;
+    }
+  
+    #table-area td {
+      font-size: 1.25em;
+    }
+  
+    #table-area tbody td {
+      display: block;
+      text-align: center;
+    }
+  
+    #table-area tbody td::before {
+      display: block;
+      font-size: 1.4em;
+      font-weight: bold;
+      text-align: center;
+      content: attr(data-th);
+    }
+}
