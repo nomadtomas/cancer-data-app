@@ -37,6 +37,10 @@ def index():
     """Return the homepage."""
     return render_template("index.html")
 
+@app.route("/hospitals")
+def hospitals():
+    """Return the homepage."""
+    return render_template("hospitals.html")
 
 @app.route("/names")
 def names():
