@@ -108,33 +108,41 @@
                 <li>Esophageal cancer</li>
             </ol>
     </div>
-    <div class="row">
-      <div class="col-md-2">
-        <div class="well">
-          <h5>SELECT Sample:</h5>
-          <select id="selDataset" onchange="optionChanged(this.value)"></select>
-        </div>
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Sample MetaData</h3>
+      <div class="col-md-8">
+      <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+
+      <!-- Accordion card -->
+      <div class="card">
+          
+      <!-- Card header -->
+      <div class="card-header" role="tab" id="headingOne1">
+        <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="false"
+            aria-controls="collapseOne1">
+          <h5 class="mb-0">
+            Cancer Stats 2019 (New Cases & Deaths) <i class="fas fa-angle-down rotate-icon"></i>
+          </h5>
+        </a>
+      </div>
+          
+      <!-- Card body -->
+      <div id="collapseOne1" class="collapse hide" role="tabpanel" aria-labelledby="headingOne1" data-parent="#accordionEx">
+      <div class="card-body">
+          <div class="row" class ="pie-row"><p></p></div>
+      
+          <div class ="container">
+            <div class="row">
+              <div class="col-md-6">
+                <h4 class= "text-center">Cancer Cases, 2019</h4>
+                <div class="align-items-left" id="pie"></div>
+              </div>
+              <div class="col-md-6">
+                <h4 class= "text-center">Cancer Deaths, 2019</h4>
+                <div class="align-items-left" id="pie2"></div>
+              </div>
+            </div>
           </div>
-          <div id="sample-metadata" class="panel-body"></div>
-        </div>
       </div>
-    <div class="row">
-      <div class="col-md-5">
-        <div id="pie"></div>
-        </div>
-        <div class="col-md-5">
-          <div id="gauge"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div id="bubble"></div>
-    </div>
+      </div> 
   </div>
 
   <!-- <script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script> -->
