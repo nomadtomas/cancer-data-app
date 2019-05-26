@@ -34,7 +34,7 @@ Samples_Metadata = Base.classes.sample_metadata
 Samples = Base.classes.samples
 
 @app.route("/")
-def index():
+def cover():
     """Return the homepage."""
     return render_template("cover.html")
 
