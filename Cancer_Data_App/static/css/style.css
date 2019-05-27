@@ -38,9 +38,15 @@ header #branding h1{
     margin-bottom: 10;
 }
 
+#showcase p{
+  color: rgb(168, 118, 118);
+  padding-top: 60px;
+  padding-left: 60px;
+}
+
 #showcase{
     min-height: 280px;
-    background: url("../image/docandribbon.jpeg");
+    background: url("../image/motherdaughter.jpeg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -49,7 +55,7 @@ header #branding h1{
 
 #showcase3{
     min-height: 280px;
-    background: url("../image/motherdaughter.jpeg");
+    background: url("../image/doctors.jpeg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -74,11 +80,7 @@ header #branding h1{
     border-bottom: #4b8683c9 2px solid;
 }
 
-#showcase p{
-    color: rgb(168, 118, 118);
-    padding-top: 60px;
-    padding-left: 60px;
-}
+
 #mapid{
     padding-top: 10px;
     padding-right: 0;
