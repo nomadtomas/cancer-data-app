@@ -35,7 +35,7 @@ Samples = Base.classes.samples
 
 @app.route("/")
 def cover():
-    """Return the homepage."""
+    """Return the cover page."""
     return render_template("cover.html")
 
 @app.route("/index.html")
@@ -45,17 +45,17 @@ def index():
 
 @app.route("/hospitals.html")
 def hospitals():
-    """Return the homepage."""
+    """Hospital webpage"""
     return render_template("hospitals.html")
 
 @app.route("/demographic.html")
 def demographic():
-    """Return the homepage."""
+    """Demographic webpage"""
     return render_template("demographic.html")
 
 @app.route("/data.html")
 def data():
-    """Return the homepage."""
+    """Data webpage"""
     return render_template("data.html")
 
 
