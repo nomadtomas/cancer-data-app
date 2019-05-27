@@ -48,7 +48,19 @@ def hospitals():
     """Return the homepage."""
     return render_template("hospitals.html")
 
+@app.route("/demographic.html")
+def demographic():
+    """Return the homepage."""
+    return render_template("demographic.html")
+
+@app.route("/data.html")
+def data():
+    """Return the homepage."""
+    return render_template("data.html")
+
+
 @app.route("/names")
+
 def names():
     """Return a list of sample names."""
 
