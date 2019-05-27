@@ -40,7 +40,7 @@ header #branding h1{
 
 #showcase{
     min-height: 280px;
-    background: url("../../image/motherdaughter.jpeg");
+    background: url("../image/motherdaughter.jpeg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -49,7 +49,7 @@ header #branding h1{
 
 #showcase3{
     min-height: 280px;
-    background: url("../../image/doctors.jpeg");
+    background: url("../image/doctors.jpeg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -58,7 +58,7 @@ header #branding h1{
 
 #showcase4{
     min-height: 280px;
-    background: url("../../image/scopeandgraphs.jpeg");
+    background: url("../image/scopeandgraphs.jpeg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -67,7 +67,7 @@ header #branding h1{
 
 #showcase5{
     min-height: 280px;
-    background: url("../../image/cancercell.jpg");
+    background: url("../image/cancercell.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
