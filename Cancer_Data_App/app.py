@@ -11,23 +11,24 @@ from sqlalchemy import create_engine
 from flask import Flask, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 
-import pymysql, os
-
-import pymysql, os
-pymysql.install_as_MySQLdb()
-
 app = Flask(__name__)
-
 
 #################################################
 # Database Setup
 #################################################
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or "mysql://root:{tomas1985t}@localhost:3306/cancer"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL', '') or "sqlite:///db/bellybutton.sqlite"
+db = SQLAlchemy(app)
+
+#################################################
+# Database Setup
+#################################################
+
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or "mysql://root:{tomas1985t}@localhost:3306/cancer"
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '')
 
 db = SQLAlchemy(app)
-
+# engine = create_engine("mysql+mysqldb://root:@localhost/create_cancerdb?host=localhost?port=3306")
 # reflect an existing database into a new model
 Base = automap_base()
 # reflect the tables
