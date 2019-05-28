@@ -11,6 +11,10 @@ from sqlalchemy import create_engine
 from flask import Flask, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 
+import pymysql, os
+
+import pymysql, os
+pymysql.install_as_MySQLdb()
 
 app = Flask(__name__)
 
@@ -19,7 +23,7 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or "sqlite:///db/bellybutton.sqlite"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or "mysql://root:{tomas1985t}@localhost:3306/cancer"
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '')
 
 db = SQLAlchemy(app)
