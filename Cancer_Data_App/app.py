@@ -74,30 +74,54 @@ def data():
     return render_template("data.html")
 
 
-@app.route("/both_cancer_rates/<site>")
-def both_cancer_rates(site):
-    #removed site 
-    """Return the MetaData for a given sample."""
+@app.route("/sites")
+def sites():
+    """Return a list of sample names."""
+
+    # Use Pandas to perform the sql query
+    stmt = db.session.query(Both_cancer_rates).statement
+    df = pd.read_sql_query(stmt, db.session.bind)
+    return jsonify(list(df.loc[:,"site"]))
+
+@app.route("/survival/<site>")
+def survival(site):
     sel = [
-        both_cancer_rates.Site,
-        both_cancer_rates.Estimate_NewCases_2019,
-        both_cancer_rates.Incidence_Rates2012_2016,
-        both_cancer_rates.Estimated_Deaths_2019,
-        both_cancer_rates.Mortality_Rates_2012_2016,
-        both_cancer_rates.Survival_per_2009_2015,
+        Both_cancer_rates.site,
+        Both_cancer_rates.Survival_per_2009_2015,
     ]
 
-    results = db.session.query(*sel).filter(both_cancer_rates.Site == Site).all()
+    survival_results = db.session.query(*sel).filter(Both_cancer_rates.site == site).all()
+
+    sample_survival = {}
+    for result in survival_results:
+        sample_survival["site"] = result[0]
+        sample_survival["Survival_per_2009_2015"] = float(result[1])
+    
+    return jsonify(sample_survival)
+
+@app.route("/both_cancer_rates/<site>")
+def both_cancer_rate(site):
+    """Return the MetaData for a given sample."""
+    sel = [
+        Both_cancer_rates.site,
+        Both_cancer_rates.Estimated_NewCases_2019,
+        Both_cancer_rates.Incidence_Rates2012_2016,
+        Both_cancer_rates.Estimated_Deaths_2019,
+        Both_cancer_rates.Mortality_Rates_2012_2016,
+        Both_cancer_rates.Survival_per_2009_2015,
+    ]
+
+    results = db.session.query(*sel).filter(Both_cancer_rates.site == site).all()
 
     # Create a dictionary entry for each row of metadata information
     both_cancer_rates = {}
     for result in results:
-        both_cancer_rates["Site"] = result[1]
-        both_cancer_rates["Estimate_NewCases_2019"] = result[2]
-        both_cancer_rates["Incidence_Rates2012_2016"] = result[3]
-        both_cancer_rates["Estimated_Deaths_2019"] = result[4]
-        both_cancer_rates["Mortality_Rates_2012_2016"] = result[5]
-        both_cancer_rates["Survival_per_2009_2015"] = result[6]
+        both_cancer_rates["site"] = result[0]
+        both_cancer_rates["Estimate_NewCases_2019"] = result[1]
+        both_cancer_rates["Incidence_Rates2012_2016"] = float(result[2])
+        both_cancer_rates["Estimated_Deaths_2019"] = result[3]
+        both_cancer_rates["Mortality_Rates_2012_2016"] = float(result[4])
+        both_cancer_rates["Survival_per_2009_2015"] = float(result[5])
 
     print(both_cancer_rates)
     return jsonify(both_cancer_rates)
