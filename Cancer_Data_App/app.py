@@ -11,32 +11,42 @@ from sqlalchemy import create_engine
 from flask import Flask, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 
+import pymysql
+pymysql.install_as_MySQLdb()
+
 app = Flask(__name__)
 
 #################################################
 # Database Setup
 #################################################
 
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL', '') or "sqlite:///db/bellybutton.sqlite"
-db = SQLAlchemy(app)
-
-#################################################
-# Database Setup
-#################################################
-
-# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or "mysql://root:{tomas1985t}@localhost:3306/cancer"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:Tomas1985t@localhost:3306/cancer"
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '')
 
 db = SQLAlchemy(app)
-# engine = create_engine("mysql+mysqldb://root:@localhost/create_cancerdb?host=localhost?port=3306")
+
 # reflect an existing database into a new model
 Base = automap_base()
 # reflect the tables
 Base.prepare(db.engine, reflect=True)
 
 # Save references to each table
-Samples_Metadata = Base.classes.sample_metadata
-Samples = Base.classes.samples
+both_cancer_rates = Base.classes.both_cancer_rates
+cancer_by_gender = Base.classes.cancer_by_gender
+cancer_deaths = Base.classes.cancer_deaths
+cancer_deaths_gender = Base.classes.cancer_deaths_gender
+cancer_rates = Base.classes.cancer_rates
+cancer_rates_by_gender = Base.classes.cancer_rates_by_gender
+cancer_vs_other_death_causes = Base.classes.cancer_vs_other_death_causes
+demographics = Base.classes.demographics
+hospital = Base.classes.hospital
+hospitalrank_ing = Base.classes.hospitalrank_ing
+most_common_cancer_by_race = Base.classes.most_common_cancer_by_race
+national_incidence_trends_gender = Base.classes.national_incidence_trends_gender
+new_cancer = Base.classes.new_cancer
+pctbyage = Base.classes.pctbyage
+us_death_rate = Base.classes.us_death_rate
+
 
 @app.route("/")
 def cover():
@@ -64,66 +74,33 @@ def data():
     return render_template("data.html")
 
 
-@app.route("/names")
-
-def names():
-    """Return a list of sample names."""
-
-    # Use Pandas to perform the sql query
-    stmt = db.session.query(Samples).statement
-    df = pd.read_sql_query(stmt, db.session.bind)
-
-    # Return a list of the column names (sample names)
-    return jsonify(list(df.columns)[2:])
-
-
-@app.route("/metadata/<sample>")
-def sample_metadata(sample):
+@app.route("/both_cancer_rates/<site>")
+def both_cancer_rates(site):
+    #removed site 
     """Return the MetaData for a given sample."""
     sel = [
-        Samples_Metadata.sample,
-        Samples_Metadata.ETHNICITY,
-        Samples_Metadata.GENDER,
-        Samples_Metadata.AGE,
-        Samples_Metadata.LOCATION,
-        Samples_Metadata.BBTYPE,
-        Samples_Metadata.WFREQ,
+        both_cancer_rates.Site,
+        both_cancer_rates.Estimate_NewCases_2019,
+        both_cancer_rates.Incidence_Rates2012_2016,
+        both_cancer_rates.Estimated_Deaths_2019,
+        both_cancer_rates.Mortality_Rates_2012_2016,
+        both_cancer_rates.Survival_per_2009_2015,
     ]
 
-    results = db.session.query(*sel).filter(Samples_Metadata.sample == sample).all()
+    results = db.session.query(*sel).filter(both_cancer_rates.Site == Site).all()
 
     # Create a dictionary entry for each row of metadata information
-    sample_metadata = {}
+    both_cancer_rates = {}
     for result in results:
-        sample_metadata["sample"] = result[0]
-        sample_metadata["ETHNICITY"] = result[1]
-        sample_metadata["GENDER"] = result[2]
-        sample_metadata["AGE"] = result[3]
-        sample_metadata["LOCATION"] = result[4]
-        sample_metadata["BBTYPE"] = result[5]
-        sample_metadata["WFREQ"] = result[6]
+        both_cancer_rates["Site"] = result[1]
+        both_cancer_rates["Estimate_NewCases_2019"] = result[2]
+        both_cancer_rates["Incidence_Rates2012_2016"] = result[3]
+        both_cancer_rates["Estimated_Deaths_2019"] = result[4]
+        both_cancer_rates["Mortality_Rates_2012_2016"] = result[5]
+        both_cancer_rates["Survival_per_2009_2015"] = result[6]
 
-    print(sample_metadata)
-    return jsonify(sample_metadata)
-
-
-@app.route("/samples/<sample>")
-def samples(sample):
-    """Return `otu_ids`, `otu_labels`,and `sample_values`."""
-    stmt = db.session.query(Samples).statement
-    df = pd.read_sql_query(stmt, db.session.bind)
-
-    # Filter the data based on the sample number and
-    # only keep rows with values above 1
-    sample_data = df.loc[df[sample] > 1, ["otu_id", "otu_label", sample]]
-    # Format the data to send as json
-    data = {
-        "otu_ids": sample_data.otu_id.values.tolist(),
-        "sample_values": sample_data[sample].values.tolist(),
-        "otu_labels": sample_data.otu_label.tolist(),
-    }
-    return jsonify(data)
-
+    print(both_cancer_rates)
+    return jsonify(both_cancer_rates)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
