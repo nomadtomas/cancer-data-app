@@ -7,8 +7,16 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/css/style.css">
 
-    <title>CancerData | Demographic Table</title>
-
+    <title>CancerData | History</title>
+    
+     <!-- Leaflet CSS & JS -->
+     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+     crossorigin=""/>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+   integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+   crossorigin=""></script>
 </head>
 <body>
     <header>
@@ -18,13 +26,10 @@
             </div> 
         </div>
     </header> <!-- end of header -->
-    <section id="showcase4">
-        <div class="container"></div>
-                 
+    <section id="showcase3">
+        <div class="container"></div>     
     </section>
-    
-    <div class="container-fluid"> 
-        <div class="col-xs-12 col-md-12"> 
+    <div class="container-fluid">  
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -71,67 +76,16 @@
                 </ul>
             </div>
         </nav>  <!-- end of nav bar -->
-        </div>
-    <div class="jumbotron">
-    <div class="container-fluid">
-        <div class="container">
-            <div class="row">
-              <div class="col-lg-2">
-                <aside class="filters">
-                  <div class="panel panel-default">
-                    <div class="panel-heading">Filter Search</div>
-                    <div class="panel-body">
-                      <form>
-                        <div class="form-group">
-                          <ul class="list-group" id="filters">
-                            <ul class="list-group" id="filters">
-                                <li class="filter list-group-item">
-                                  <label for="race">Enter a Race</label>
-                                  <input class="form-control" id="race" type="text" placeholder="All Races">
-                                </li>
-                                <li class="filter list-group-item">
-                                  <label for="cancer">Enter a Cancer Type</label>
-                                  <input class="form-control" id="cancer" type="text" placeholder="Bladder">
-                                </li>
-                          </ul>
-                        </div>
-                        <button id="filter-btn" type="submit" class="btn btn-default">Filter Table</button>
-                      </form>
-                    </div>
-                  </div>
-                </aside>
-              </div>
-              <div class="col-md-10">
-                <div id="table-area" class="">
-                  <table id="ufo-table" class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th class="table-head">Female Deaths</th>
-                        <th class="table-head">Female New Cases</th>
-                        <th class="table-head">Male Deaths</th>
-                        <th class="table-head">Male New Cases</th>
-                        <th class="table-head">% Male Deaths</th>
-                        <th class="table-head">% Female Deaths</th>
-                        <th class="table-head">Race</th>
-                        <th class="table-head">Cancer Type</th>
-                      </tr>
-                    </thead>
-                    <tbody></tbody>
-                  </table>
-                </div>
-              </div>
-            </div><!-- end of row -->
-          </div>    
-
-    </div>    
-    </div> <!-- end of jumbotron -->
     </div> <!-- end of container -->
-    <footer id="footer">
-            <p>CancerFacts&copy;2019</p>
-    </footer>
+    <div class="container-fluid" id="mapid">
+           
+        </div>
+    </div> <!-- end of map -->
+    </div>
+    </div>
+    </div> <!-- end of container -->
     <!-- Our JS -->
-    <script src="../static/js/demo.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+    <script type="text/javascript" src="../static/js/usmap.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>  

@@ -33,17 +33,17 @@ Base.prepare(db.engine, reflect=True)
 # Save references to each table
 both_cancer_rates = Base.classes.both_cancer_rates
 cancer_by_gender = Base.classes.cancer_by_gender
-cancer_deaths = Base.classes.cancer_deaths
+total_cancer_deaths = Base.classes.cancer_deaths
 cancer_deaths_gender = Base.classes.cancer_deaths_gender
 cancer_rates = Base.classes.cancer_rates
 cancer_rates_by_gender = Base.classes.cancer_rates_by_gender
 cancer_vs_other_death_causes = Base.classes.cancer_vs_other_death_causes
 demographics = Base.classes.demographics
 hospital = Base.classes.hospital
-hospitalranking = Base.classes.hospitalranking
+# hospitalranking = Base.classes.hospitalranking
 most_common_cancer_by_race = Base.classes.most_common_cancer_by_race
 national_incidence_trends_gender = Base.classes.national_incidence_trends_gender
-new_cancer = Base.classes.new_cancer
+total_new_cancer = Base.classes.new_cancer
 pctbyage = Base.classes.pctbyage
 us_death_rate = Base.classes.us_death_rate
 
@@ -53,22 +53,28 @@ def cover():
     """Return the cover page."""
     return render_template("cover.html")
 
-@app.route("/index.html")
+@app.route("/index")
 def index():
     """Return the homepage."""
     return render_template("index.html")
 
-@app.route("/hospitals.html")
+@app.route("/hospitals")
 def hospitals():
     """Hospital webpage"""
     return render_template("hospitals.html")
 
-@app.route("/demographic.html")
+@app.route("/demographic")
 def demographic():
     """Demographic webpage"""
     return render_template("demographic.html")
 
-@app.route("/data.html")
+@app.route("/history")
+def history():
+    """History webpage"""
+
+    return render_template("history.html")
+
+@app.route("/data")
 def data():
     """Data webpage"""
     return render_template("data.html")
@@ -125,6 +131,79 @@ def both_cancer_rate(site):
 
     print(both_cancer_rates)
     return jsonify(both_cancer_rates)
+
+# Karuna
+@app.route("/indexpy")
+def indexpy():
+    return render_template("indexpy.html")
+
+@app.route("/new_cancer")
+def new_cancer():
+    sel =[
+        "cancer_number",
+        "percentage_of_cancer",
+        "cancer_type"
+    ]
+    results = db.session.query(*sel,total_new_cancer).all()
+     # Create a dictionary entry for each row of information
+    new_cancer_list = []
+    for result in results:
+        new_cancer_dict={}
+        new_cancer_dict["number"] = float(result[0])
+        new_cancer_dict["percent"] = float(result[1])*100
+        new_cancer_dict["cancer_type"] = result[2]
+        new_cancer_list.append(new_cancer_dict)
+    print(new_cancer)
+    return jsonify(new_cancer_list)
+
+
+
+@app.route("/cancer_deaths")
+def cancer_deaths():
+    sel =[
+        "number_of_deaths",
+        "percent",
+        "cancer_type"
+    ]
+    results = db.session.query(*sel, total_cancer_deaths).all()
+     # Create a dictionary entry for each row of information
+    cancer_deaths_list = []
+    for result in results:
+        print(result)
+        cancer_deaths_dict = {}
+        cancer_deaths_dict["number"] = result[0]
+        cancer_deaths_dict["percent"] = float(result[1])*100
+        cancer_deaths_dict["cancer_type"] = result[2]
+        cancer_deaths_list.append(cancer_deaths_dict)
+    print("completed loop")
+    return jsonify(cancer_deaths_list)
+    
+
+
+@app.route("/both_cancer_rates_all")
+def both_cancer_rates_all():
+    """Return the MetaData for a given sample."""
+    sel = [
+        "site",
+        "Estimated_NewCases_2019",
+      
+        "Survival_per_2009_2015"
+   
+    ]
+
+    results = db.session.query(*sel,both_cancer_rates).all()
+
+    # Create a dictionary entry for each row of metadata information
+    both_cancer_rates_list = []
+    for result in results:
+        
+        both_cancer_rates_dict = {}
+        both_cancer_rates_dict["Site"] = result[0]
+        both_cancer_rates_dict["Estimated_NewCases_2019"] = float(result[1])
+        both_cancer_rates_dict["Survival_per_2009_2015"] = float(result[2])
+        both_cancer_rates_list.append(both_cancer_rates_dict)
+    
+    return jsonify(both_cancer_rates_list)
 
 if __name__ == "__main__":
     app.run(debug=True)

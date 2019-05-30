@@ -2,14 +2,14 @@
 let pieAcord = d3.select("#headingOne1")
 
 pieAcord.on("click", function(){
-  
-  d3.event.preventDefault()
-
-  pieFunction("new_cancer.csv","#pie") 
-  pieFunction("cancer_deaths.csv","#pie2")
+  d3.select("#pie").selectAll("svg").remove()
+  d3.select("#pie2").selectAll("svg").remove()
+  pieFunction("/new_cancer","#pie") 
+  pieFunction("/cancer_deaths","#pie2")
 })
 
-async function pieFunction(fileName,divName) {
+
+async function pieFunction(pathName,divName) {
 
 
 var margin = {top: 20, right: 20, bottom: 20, left: 20},
@@ -46,21 +46,22 @@ var svg = d3.select(divName).append("svg")
 
 
 // import data 
-const data = await d3.csv(fileName)
-    
+const data = await d3.json(pathName)
+  
   
     // parse data
     var legendText=[]
     
     data.forEach(function(d) {
         legendText.push(d.number)
-        d.number = parseFloat(d.number.replace(/,/g, ''))
-        txt = d.percent
-        init = txt.indexOf('(');
-        fin = txt.indexOf(')');
-        new_val = txt.substr(init+1,fin-init-1)
-       d.percent = new_val
-        
+        // d.number = parseFloat(d.number.replace(/,/g, ''))
+        // txt = d.percent
+        // init = txt.indexOf('(');
+        // fin = txt.indexOf(')');
+        // new_val = txt.substr(init+1,fin-init-1)
+        d.number = d.number
+        d.percent = String(Math.floor(d.percent)).concat("%")
+        console.log(d.percent)
         d.cancer_type= d.cancer_type;
     })
     
@@ -140,7 +141,4 @@ legend.append('text')
     });
 
 }
-
-
-
 
