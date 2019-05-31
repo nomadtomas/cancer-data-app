@@ -1,6 +1,6 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.5;
     padding: 0;
     margin: 0;
@@ -9,7 +9,17 @@ body{
 
 #maptext{
   color: rgba(82, 45, 45, 0.856);
+  background: white;
+  padding-top: 10px;
 }
+
+#list {
+  color: rgba(82, 45, 45, 0.856);
+  background: white;
+  padding-top: 10px;
+  padding-left: 65px;
+}
+
 
 /* Global */
 .container{
@@ -21,7 +31,7 @@ body{
 header{
     background: rgba(167, 112, 9, 0.815);
     color: #ffffff;
-    padding-top: 10px; 
+    padding-top: 5px; 
     min-height: 20px;
     border-bottom: #4b8683c9 2px solid;
 }
@@ -38,6 +48,7 @@ header #branding h1{
     margin-bottom: 10;
 }
 
+
 #showcase p{
   color: rgb(168, 118, 118);
   padding-top: 60px;
@@ -51,6 +62,15 @@ header #branding h1{
     background-size: cover;
     background-repeat: no-repeat;
     border-bottom: #4b8683c9 2px solid;
+}
+
+#showcase2{
+  min-height: 280px;
+  background: url("../image/doctors.jpeg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-bottom: #4b8683c9 2px solid;
 }
 
 #showcase3{
@@ -71,6 +91,7 @@ header #branding h1{
     border-bottom: #4b8683c9 2px solid;
 }
 
+
 #showcase5{
     min-height: 280px;
     background: url("../image/cancercell.jpg");
@@ -80,7 +101,69 @@ header #branding h1{
     border-bottom: #4b8683c9 2px solid;
 }
 
+#showcase6{
+  min-height: 280px;
+  background: url("../image/docandribbon.jpeg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-bottom: #4b8683c9 2px solid;
+}
 
+#pie, #pie2 {
+  margin-bottom:30px;
+  margin-right:5px;
+  margin-left:5px
+}
+
+.legend-entry{
+  padding-left: 100px;
+}
+
+.arc text {
+	font-size: 18px;
+	text-anchor: middle;
+	font-weight:bold;
+	fill:#ffffff;
+}
+
+.arc path {
+	stroke: #fff;
+}
+.card{
+	border:none
+}
+.tooltip {
+		background: #eee;
+		box-shadow: 0 0 5px #999999;
+		color: #333;
+		font-size: 12px;
+		left: 130px;
+		padding: 10px;
+		position: absolute;
+		text-align: center;
+		top: 95px;
+		width: 190px;
+		z-index: 10;
+		display: block;
+		opacity: 0;
+		height:85px
+}
+.d3-tip {
+	padding: 6px;
+	font-size: 12px;
+	line-height: 1;
+	line-height: 1.5em;
+	color: #fff;
+	text-align: center;
+	text-transform: capitalize;
+	background: rgba(0, 0, 0, 0.8);
+	border-radius: 4px;
+  }
+
+.atext{
+	fill:rgba(82, 45, 45, 0.856);
+}
 #mapid{
     padding-top: 10px;
     padding-right: 0;

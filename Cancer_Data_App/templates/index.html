@@ -2,112 +2,100 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="../static/css/style.css">
-  <title>CancerData | Welcome</title>
-  
-  <!-- Leaflet CSS & JS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
-  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-  crossorigin=""/>
-  <!-- Make sure you put this AFTER Leaflet's CSS -->
-  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
-  integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
-  crossorigin=""></script>
- 
-  <!-- added for the accordian -->
- <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+    <meta charset="UTF-8">
+    <title>pie</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- added for the accordian -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
 
-</head>
+  </head>
 
 <body>
-<header>
-    <div class="container">
-        <div id="branding">
-            <h1> <a class="link" href="/">CancerFacts</a></h1>
-        </div> 
-    </div>
-</header> <!-- end of header -->
-<section id="showcase">
-    <div class="container"></div>
-        <p>"Cancer affects all of us,<br>whether you're a daughter,<br>
-            mother, sister, friend,<br>coworker, doctor, or <br>patient."<br><br>
-            --Jennifer Aniston
-        </p>         
-</section>
-
-  <div class="container-fluid">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" href="index">Home <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="about">About Us</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="hospitals">Cancer Hospitals</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="data">Cancer Survival</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="history">Cancer History</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="indexpy">index</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="demographic">Cancer Demographic</a>
-                </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Cancers
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Bladder</a>
-                  <a class="dropdown-item" href="#">Breast (Female)</a>
-                  <a class="dropdown-item" href="#">Colon and Rectum</a>
-                  <a class="dropdown-item" href="#">Kidney and Renal Pelvis</a>
-                  <a class="dropdown-item" href="#">Leukemia</a>
-                  <a class="dropdown-item" href="#">Lung and Bronchus</a>
-                  <a class="dropdown-item" href="#">Melanoma of the Skin</a>
-                  <a class="dropdown-item" href="#">Non-Hodgkin Lymphoma</a>
-                  <a class="dropdown-item" href="#">Pancreas</a>
-                  <a class="dropdown-item" href="#">Prostate</a>
-                  <a class="dropdown-item" href="#">Thyroid</a>
-                  <a class="dropdown-item" href="#">Uterus</a>
-                </div>
-              </li>
-          </ul>
-      </div>
-  </nav>  <!-- end of nav bar -->
-  <div class="container-fluid" id="mapid">
-    <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
-    <div class="row" id="maptext">
-    <div class="col-lg-4">
-        <h3>Highlights</h3>
-        <h6>With over 5,000 hospitals nation wide, there is always help near you.</h6>
-       
-        <h3>What is cancer?</h3>
-         <h6>Cancer is a name given to a collection of related diseases.  The main 
-             commonality is that some of the body's cells begin to divide without stopping
-             and spread into surrounding tissues.
-         </h6>
-        
-         <h3>How many cancer types exist?</h3>
-         <h6>Over 120 cancer types have been found, each characterized by abnormal cell
-             growth.  Nevertheless, many are treatable with a high survival rate.  
-         </h6>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1> <a class="link" href="/">CancerFacts</a></h1>
+            </div> 
+        </div><!-- end of container -->
+    </header> <!-- end of header -->
+    <section id="showcase">
+        <div class="container"></div>
+            <p>"Cancer affects all of us,<br>whether you're a daughter,<br>
+                mother, sister, friend,<br>coworker, doctor, or <br>patient."<br><br>
+                --Jennifer Aniston
+            </p>         
+    </section><!-- end of section -->
     
-         <h3>What are the deadliest types?</h3>
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="index">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="about">About Us</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="hospitals">Cancer Hospitals</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="data">Cancer Survival</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="history">Cancer History</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="demographic">Cancer Demographic</a>
+                    </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Cancers
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <a class="dropdown-item" href="#">Bladder</a>
+                      <a class="dropdown-item" href="#">Breast (Female)</a>
+                      <a class="dropdown-item" href="#">Colon and Rectum</a>
+                      <a class="dropdown-item" href="#">Kidney and Renal Pelvis</a>
+                      <a class="dropdown-item" href="#">Leukemia</a>
+                      <a class="dropdown-item" href="#">Lung and Bronchus</a>
+                      <a class="dropdown-item" href="#">Melanoma of the Skin</a>
+                      <a class="dropdown-item" href="#">Non-Hodgkin Lymphoma</a>
+                      <a class="dropdown-item" href="#">Pancreas</a>
+                      <a class="dropdown-item" href="#">Prostate</a>
+                      <a class="dropdown-item" href="#">Thyroid</a>
+                      <a class="dropdown-item" href="#">Uterus</a>
+                    </div>
+                  </li>
+              </ul>
+          </div>
+      </nav>  <!-- end of nav bar -->
+      <div class="container-fluid">
+        <div class="row">
+        <div class="col-lg-5" id="maptext">
+              <h3 >What is cancer?</h3>
+               <h6>Cancer is a name given to a collection of related diseases.  The main 
+                   commonality is that some of the body's cells begin to divide without stopping
+                   and spread into surrounding tissues.
+               </h6>
+               <h3>How many cancer types exist?</h3>
+                <h6>Over <strong>120 cancer types</strong> have been found, each characterized by abnormal cell
+                 growth.  Nevertheless, many are treatable with a high survival rate.  
+                </h6>
+        </div> <!-- end of col-md-5 -->   
+        <div class="col-md-7" id="list"> 
+            <h3>What are the deadliest types?</h3>
             <ol>
                 <li>Lung and bronchail cancer</li>
                 <li>Colon and rectal cancer</li>
@@ -120,55 +108,79 @@
                 <li>Ovarian cancer</li>
                 <li>Esophageal cancer</li>
             </ol>
-    </div>
-      <div class="col-md-6">
-      <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
-
-      <!-- Accordion card -->
-      <div class="card">
-          
-      <!-- Card header -->
-      <div class="card-header" role="tab" id="headingOne1">
-        <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="false"
-            aria-controls="collapseOne1">
-          <h5 class="mb-0">
-            Cancer Stats 2019 (New Cases & Deaths) <i class="fas fa-angle-down rotate-icon"></i>
-          </h5>
-        </a>
-      </div>
-          
-      <!-- Card body -->
-      <div id="collapseOne1" class="collapse hide" role="tabpanel" aria-labelledby="headingOne1" data-parent="#accordionEx">
-      <div class="card-body">
-          <div class="row" class ="pie-row"><p></p></div>
-      
-          <div class ="container">
-            <div class="row">
-              <div class="col-md-6">
-                <h4 class= "text-center">Cancer Cases, 2019</h4>
-                <div class="align-items-left" id="pie"></div>
-              </div>
-              <div class="col-md-6">
-                <h4 class= "text-center">Cancer Deaths, 2019</h4>
-                <div class="align-items-left" id="pie2"></div>
-              </div>
-            </div>
           </div>
-      </div>
-      </div> 
-  </div>
+        </div> <!-- end of col-md-7 -->
+          <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+        
+          <!-- Accordion card -->
+        <div class="card">
+          
+          <div class="card-header" role="tab" id="headingOne1"> <!-- Card header -->
+            <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="false"
+              aria-controls="collapseOne1">
+              <h5>
+                Cancer Stats 2019 (New Cases & Deaths) <i class="fas fa-angle-down rotate-icon"></i>
+              </h5>
+            </a>
+          </div> <!-- end of card-header -->
+          <div id="collapseOne1" class="collapse hide" role="tabpanel" aria-labelledby="headingOne1" data-parent="#accordionEx"><!-- Card body -->
+            <div class="card-body">
+                    <div class="row" class ="pie-row"><p></p></div>
+                    <div class ="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 class= "text-center">2019 New Cases </h4>
+                                <div class="align-items-left" id="pie"></div>
+                            </div>
+                        </div> <!-- end of row -->
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-md-12">
+                                <h4 class= "text-center">2019 Deaths </h4>
+                                <div class="align-items-left" id="pie2"></div>
+                            </div>
+                          </div> <!-- end of row -->
+                        </div> <!-- end of container -->
+                    </div> <!-- end of container -->
+            </div> <!-- end of card-body -->
+          </div><!-- end of collapse hide -->
+        </div><!-- end of card -->
+          </div> <!-- end of accordian -->
+      
+        <div class="card">    
+                <div class="card-header" role="tab" id="headingTwo2"> <!-- Card header -->
+                  <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo2"
+                    aria-expanded="false" aria-controls="collapseTwo2">
+                    <h5 class="mb-0">
+                      Cancer Survival Rate  <i class="fas fa-angle-down rotate-icon"></i>
+                    </h5>
+                  </a>
+                </div> <!-- end of card-header -->
+                <!-- Card body -->
+                  <div id="collapseTwo2" class="collapse" role="tabpanel" aria-labelledby="headingTwo2" data-parent="#accordionEx">
+                  <div class="card-body">
+                   
+                   <div class ="container">
+                            <div class="row" id ="scatter">
+                                <div class="col-md-12">
+                                    <h4 class= "text-center">Cancer  Survival Rate</h4>
+                                    <div class="align-items-left" id="Scatter"></div>
+                                </div>
+                                
+                            </div>
+                    </div>
+                  </div><!-- end of card-body -->
+                </div><!-- end of collapseTwo2 -->
+        </div> <!-- end of card -->
+      </div> <!--accordian wrapper-->
+    </div> <!-- end of container-fluid -->
+     
+    <script src="{{ url_for('static', filename='js/pie.js') }}"></script>
+    <script src = "{{ url_for('static', filename='js/scatter.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-  <!-- <script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script> -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script src="{{ url_for('static', filename='js/bonus.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
-  <script src="app.js"></script>
-  <script type="text/javascript" src="../static/js/hospitals.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-</body>
-
-</html>
+</body></html>

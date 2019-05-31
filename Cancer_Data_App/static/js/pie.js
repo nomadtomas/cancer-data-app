@@ -12,7 +12,7 @@ pieAcord.on("click", function(){
 async function pieFunction(pathName,divName) {
 
 
-var margin = {top: 20, right: 20, bottom: 20, left: 20},
+var margin = {top: 10, right: 10, bottom: 10, left: 10},
     width =600 - margin.right - margin.left,
     height = 400 - margin.top - margin.bottom,
     radius = Math.min(width, height) / 2;
@@ -106,7 +106,7 @@ var legend = svg.selectAll('.legend-entry').data(data)
 legend.append('rect')
     .data(data)
   .attr('class', 'legend-rect')
-  .attr('x', 175)
+  .attr('x', 200)
   .attr('y', function (d, i) { return i * 30})
   .attr('width', 20)
   .attr('height', 20)
@@ -117,7 +117,7 @@ legend.append('rect')
 
 legend.append('text')
   .attr('class', 'legend-text')
-  .attr('x', 200)
+  .attr('x', 230)
   .attr('y', function (d, i) { return ( i * 30) + 15 })
   .style('fill',"#000a19")
   .text(function (d,i) {

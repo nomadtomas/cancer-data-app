@@ -41,7 +41,7 @@ header {
     display: inline-block;
     vertical-align: center;
     margin: 0 auto;
-    width: 85%;
+    width: 80%;
     padding-bottom: 30px;
     padding-top:10px;
     text-align: center;
@@ -49,14 +49,11 @@ header {
     font-weight: bold;
    }
 
-
-   
-
    header .banner-text {
     position: relative;
-    color: black;
     width: 100%;
-    background: rgba(202, 167, 101, 0.5);
+    padding-top: 10px;
+    background: rgba(202, 167, 101, 0.55);
     color: #f1f1f1;
    }
    

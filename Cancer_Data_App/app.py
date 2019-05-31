@@ -53,11 +53,13 @@ def cover():
     """Return the cover page."""
     return render_template("cover.html")
 
-@app.route("/index")
-def index():
-    """Return the homepage."""
-    return render_template("index.html")
+# @app.route("/index")
+# def index():
+#     """Return the homepage."""
+#     return render_template("index.html")
 
+
+    
 @app.route("/hospitals")
 def hospitals():
     """Hospital webpage"""
@@ -133,10 +135,9 @@ def both_cancer_rate(site):
     return jsonify(both_cancer_rates)
 
 # Karuna
-@app.route("/indexpy")
-def indexpy():
-    return render_template("indexpy.html")
-
+@app.route("/index")
+def index():
+    return render_template("index.html")
 @app.route("/new_cancer")
 def new_cancer():
     sel =[
@@ -177,8 +178,6 @@ def cancer_deaths():
         cancer_deaths_list.append(cancer_deaths_dict)
     print("completed loop")
     return jsonify(cancer_deaths_list)
-    
-
 
 @app.route("/both_cancer_rates_all")
 def both_cancer_rates_all():
