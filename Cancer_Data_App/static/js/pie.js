@@ -39,7 +39,7 @@ var pie = d3.pie()
 
 // define the svg for pie chart had to increase by 100 to make room for the legends
 var svg = d3.select(divName).append("svg")
-    .attr("width", width + 10)
+    .attr("width", width + 150)
     .attr("height", height)
     
    .append("g")
