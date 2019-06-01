@@ -16,7 +16,7 @@ async function scatter() {
        top: 50,
        right: 10,
        bottom: 50,
-       left: 50
+       left: 80
    };
 
    const height = svgHeight - margin.top - margin.bottom;
@@ -37,12 +37,29 @@ async function scatter() {
    console.log(csvData)
    g_csvData = csvData;
 
+  //colors for the circle from color scale
+  var color = ['#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6', '#bcf60c', '#fabebe', '#008080', '#e6beff', '#9a6324', '#fffac8', '#800000', '#aaffc3', '#808000', '#ffd8b1', '#000075', '#808080', '#e6beff', '#000000','#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231','#911eb4', '#46f0f0', '#f032e6', '#bcf60c', '#fabebe', '#008080', '#e6beff', '#9a6324', '#fffac8', '#800000', '#aaffc3', '#808000', '#ffd8b1',]
   
 //    append svg and group
    const svg = d3.select("#scatter")
        .append("svg")
        .attr("height", svgHeight)
-       .attr("width", svgWidth);
+       .attr("width", svgWidth)
+//    for glow start
+       var defs = svg.append("defs");
+
+       //Filter for the outside glow
+       var filter = defs.append("filter")
+           .attr("id","glow");
+       filter.append("feGaussianBlur")
+           .attr("stdDeviation","3.5")
+           .attr("result","coloredBlur");
+       var feMerge = filter.append("feMerge");
+       feMerge.append("feMergeNode")
+           .attr("in","coloredBlur");
+       feMerge.append("feMergeNode")
+           .attr("in","SourceGraphic");
+    //   for glow end 
 
    const chartGroup = svg.append("g")
        .attr("transform", `translate(${margin.left}, ${margin.top})`);
@@ -90,15 +107,12 @@ async function scatter() {
    .enter()
    .append("circle")
     .attr("opacity","0.5")
-   .attr("fill", "blue")
-
-   //labels for the circle
-//    const labelCircle = chartGroup.selectAll(null)
-//            .data(csvData)
-//            .enter()
-//            .append("text")
-//    labelCircle.attr("text-anchor", "middle")
-//        .attr("fill","white")
+    .attr("stroke","black") 
+    //for glow
+    .attr("class","classOfCircles")
+    //Apply glow to your circles
+d3.selectAll(".classOfCircles")
+.style("filter", "url(#glow)");
 
 // Initialize tool tip
 // ==============================
@@ -106,7 +120,7 @@ async function scatter() {
        .attr("class", "d3-tip")
        .offset([0, 0])
        .html(function(d) {
-       return (`<strong>${d.Site}</strong><br><strong>Survival % (2009-2015): ${d.Survival_per_2009_2015}%</strong><br><strong>Estimated New Cases: ${d.Estimated_NewCases_2019}</strong>`);
+       return (`<strong>${d.Site}</strong><br><strong>Survival (2009-2015): ${d.Survival_per_2009_2015}%</strong><br><strong>Estimated New Cases: ${d.Estimated_NewCases_2019}</strong>`);
        });
 
 // //   Add an onmouseover event to display a tooltip
@@ -116,11 +130,22 @@ async function scatter() {
 //  Create event listeners to display and hide the tooltip
 //     // ==============================
    circlesGroup.on("click", function(d) {
-           toolTip.show(d, this);
+           toolTip.show(d, this)
+           d3.select(this)
+        //    circlesGroup.transition()
+         
+           .attr('r', d=> d.Survival_per_2009_2015/5*2+29)
+           .duration(1500) 
+                    
        })
+        
        .on("mouseout", function(d) {
-       toolTip.hide(d);
-       });
+       toolTip.hide(d)
+       circlesGroup.transition()
+       .attr('r', d=> d.Survival_per_2009_2015/5*2)
+       .duration(700) 
+       })
+     
     
 //      Create axes labels
    chartGroup.append("text")
@@ -129,17 +154,18 @@ async function scatter() {
        .attr("x", 0 - (height / 2))
        .attr("dy", "1em")
    
-       .style("fill", "#0000ff")
+       .style("fill", "black")
        .text("Estimated New Cases (2019)");
 
-//    chartGroup.append("text")
-//        .attr("transform", `translate(${width / 2}, ${height + margin.top-2})`)
-//        .attr("class", "aText")
-//        .text("All Sites");
-// transtion for circles
    circlesGroup.transition()
                .duration(3000)
                .attr("cx", (d,i) => xScale(d.Site))
                .attr("cy", d => yScale(d.Estimated_NewCases_2019))
                .attr('r', d=> d.Survival_per_2009_2015/5*2)
-    }
+                .style('fill', function(d,i){ 
+                    return color[i]})
+                .duration(2500)
+                .ease(d3.easeBounce)
+
+
+}

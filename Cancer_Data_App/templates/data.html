@@ -16,6 +16,8 @@
     <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
    integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
    crossorigin=""></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.2/d3.min.js"></script>
+   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
     <header>
@@ -84,33 +86,27 @@
         <h1 class="display-4 text-center">EXPLORE THE DATA</h1>
             <p class="lead text-center">Survival data per cancer type</p>
             <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                       <div class="well">
-                        <h5>SELECT Sample:</h5>
+                        <h5>SELECT CANCER TYPE:</h5>
                         <select id="selDataset" onchange="optionChanged(this.value)"></select>
                       </div>
                       <div class="panel panel-primary">
                         <div class="panel-heading">
-                          <h3 class="panel-title">Sample MetaData</h3>
+                          <h3 class="panel-title"><b>INFORMATION</b></h3>
                         </div>
                         <div id="sample-metadata" class="panel-body"></div>
                       </div>
                     </div>
-                  <div class="row">
-                    <div class="col-md-5">
-                      <div id="pie"></div>
-                      </div>
-                      <div class="col-md-5">
+                      <div class="col-md-4"id="bgcolor"> 
                         <div id="gauge"></div>
                       </div>
-                    </div>
+                      <div class="col-md-4"id="bgcolor"> 
+                        <div id="barChart"></div>
+                      </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div id="bubble"></div>
-                  </div>
-                </div>
+                
     </div> <!-- end of container-fluid -->
     </div> <!-- end of jumbotron -->
     </div>
@@ -118,13 +114,10 @@
     <footer id="footer">
             <p>CancerFacts&copy;2019</p>
     </footer>
-    <!-- API key -->
-    <script type="text/javascript" src="../static/js/config.js"></script>
     <!-- Our JS -->
-    <script src="{{ url_for('static', filename='js/both_cancer_rate.js') }}"></script>
-    <script type="text/javascript" src="../static/js/hospitals.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>  
+    <script src="{{ url_for('static', filename='js/gauge.js') }}"></script>
 </body>
 </html>
