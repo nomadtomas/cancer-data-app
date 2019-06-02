@@ -134,9 +134,7 @@ d3.selectAll(".classOfCircles")
            d3.select(this)
         //    circlesGroup.transition()
          
-           .attr('r', d=> d.Survival_per_2009_2015/5*2+29)
-           .duration(1500) 
-                    
+           .attr('r', d=> d.Survival_per_2009_2015/5*2+29)        
        })
         
        .on("mouseout", function(d) {
