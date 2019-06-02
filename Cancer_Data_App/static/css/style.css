@@ -8,11 +8,30 @@ body{
 }
 
 #bgcolor{
+  margin-top:100px;
   background-color: rgb(222, 227, 233)
 }
+img{
+  display: block;
+  margin: 10px auto 35px auto;
+}
+#stat-box{
+  border-style: solid;
+  background: rgb(222, 227, 233);
+}
+#stat-box p{
+  font-size: 22px;
+}
+strong{
+  font-size: 57px;
+}
 
-
-
+#cancer_info{
+  margin-bottom: 20px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  padding: 15px;
+}
 #maptext{
   color: rgba(82, 45, 45, 0.856);
   background: white;
@@ -58,7 +77,8 @@ header #branding h1{
   border: #000;
   padding-top: 20px;
   padding-left: 10px;
-  font-size: 14px;
+  font-size: 16px;
+  border-style: solid;
 }
 
 #showcase p{

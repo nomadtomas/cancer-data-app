@@ -102,9 +102,10 @@ let layout = {
       line: {
         color: '850000'
       }
+
     }],
 
-  title: '<b> Five Year <br> Cancer Survival Rate (%) </b> <br> (2009-2015)',
+  title: "<b> Five Year <br> Cancer Survival Rate (%) </b> <br> (2009-2015)",
   xaxis: {zeroline:false, showticklabels:false,
     showgrid: false, range: [-1, 1]},
   yaxis: {zeroline:false, showticklabels:false,

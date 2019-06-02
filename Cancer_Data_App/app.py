@@ -53,42 +53,10 @@ def cover():
     """Return the cover page."""
     return render_template("cover.html")
 
-    
 @app.route("/hospitals")
 def hospitals():
     """Hospital webpage"""
     return render_template("hospitals.html")
-
-@app.route("/demographic")
-def demographic():
-    """Demographic webpage"""
-    return render_template("demographic.html")
-
-@app.route("/demo_data")
-def demo_data():
-    sel =[
-        "female_death_num","female_new_num","female_pct_deaths",
-        "male_death_num","male_new_num","female_pct_deaths",
-        "race", "type_name"
-    ]
-    results = db.session.query(*sel,demographics).all()
-     # Create a dictionary entry for each row of information
-    demographic_list = []
-    for result in results:
-        demo_dict={}
-        demo_dict["female_death_num"] = float(result[0])
-        demo_dict["female_new_num"] = float(result[1])
-        demo_dict["female_pct_deaths"] = float(result[2])
-        demo_dict["male_death_num"] = float(result[3])
-        demo_dict["male_new_num"] = float(result[4])
-        demo_dict["male_pct_deaths"] = float(result[5])
-        demo_dict["race"] = result[6]
-        demo_dict["type_name"] = result[7]
-
-        demographic_list.append(demo_dict)
-    print(demo_data)
-    return jsonify(demographic_list)
-
 
 @app.route("/history")
 def history():
@@ -96,6 +64,7 @@ def history():
 
     return render_template("history.html")
 
+# Sai
 @app.route("/data")
 def data():
     """Data webpage"""
@@ -247,45 +216,65 @@ def both_cancer_rates_all():
     return jsonify(both_cancer_rates_list)
 
 
-# @app.route("/bladder")
-# def bladder():
-#     """Bladder webpage"""
-#     return render_template("bladder.html")
+@app.route("/bladder")
+def bladder():
+    """Bladder webpage"""
+    return render_template("bladder.html")
 
-# @app.route("/breast")
-# def breast():
-#     """Breast webpage"""
-#     return render_template("breast.html")
+@app.route("/breast")
+def breast():
+    """Breast webpage"""
+    return render_template("breast.html")
 
-# @app.route("/colon_and_rectum")
-# def colon_and_rectum():
-#     """Colon webpage"""
-#     return render_template("colon_and_rectum.html")
+@app.route("/colon_and_rectum")
+def colon_and_rectum():
+    """Colon webpage"""
+    return render_template("colon_and_rectum.html")
 
-# @app.route("/kidney")
-# def kidney():
-#     """Kidney webpage"""
-#     return render_template("kidney.html")
+@app.route("/kidney")
+def kidney():
+    """Kidney webpage"""
+    return render_template("kidney.html")
 
-# @app.route("/leukemia")
-# def leukemia():
-#     """Leukemia webpage"""
-#     return render_template("leukemia.html")
+@app.route("/leukemia")
+def leukemia():
+    """Leukemia webpage"""
+    return render_template("leukemia.html")
 
-# @app.route("/lung")
-# def lung():
-#     """Lung webpage"""
-#     return render_template("lung.html")
+@app.route("/lung")
+def lung():
+    """Lung webpage"""
+    return render_template("lung.html")
 
-# @app.route("/melanoma")
-# def melanoma():
-#     """Melanoma webpage"""
-#     return render_template("melanoma.html")
+@app.route("/melanoma")
+def melanoma():
+    """Melanoma webpage"""
+    return render_template("melanoma.html")
 
-# @app.route("/pancreas")
-# def pancreas():
-#     """Pancreas webpage"""
-#     return render_template("pancreas.html")
+@app.route("/lymphoma")
+def lymphoma():
+    """Lymphoma webpage"""
+    return render_template("lymphoma.html")
+
+@app.route("/pancreas")
+def pancreas():
+    """Pancreas webpage"""
+    return render_template("pancreas.html")
+
+@app.route("/prostate")
+def prostate():
+    """Prostate webpage"""
+    return render_template("prostate.html")
+
+@app.route("/thyroid")
+def thyroid():
+    """Thyroid webpage"""
+    return render_template("thyroid.html")
+
+@app.route("/uterus")
+def uterus():
+    """Uterus webpage"""
+    return render_template("uterus.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
