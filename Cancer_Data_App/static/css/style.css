@@ -7,10 +7,52 @@ body{
     background-color: whitesmoke;
 }
 
+#branding{
+  position: absolute;
+  top: 3%;
+  left:10%;
+  transform: translate(-50%, -50%);
+  width: 17%;
+}
+
+path{
+  stroke:#fff;
+  fill: #fff;
+  stroke-dasharray: 600; 
+  opacity: 10;
+  animation: animate 5s cubic-bezier(0,0.10,1,.0001)
+}
+
+@keyframes animate{
+  0% {
+    opacity: 0;
+    fill: none;
+    stroke-dashoffset: 600;
+  }
+
+  30% {
+    opacity: 0;
+    fill: none;
+    stroke-dashoffset: 600;
+  }
+
+  90% {
+    fill: rgba(255,255,255,0);
+  }
+
+  100% {
+    opacity: 10;
+    fill: rgba(255,255,255,1);
+    stroke-dashoffset: 0;
+  }
+
+}
+
 #bgcolor{
   margin-top:100px;
   background-color: rgb(222, 227, 233)
 }
+
 img{
   display: block;
   margin: 10px auto 35px auto;
@@ -55,7 +97,7 @@ img{
 header{
     background: rgba(167, 112, 9, 0.815);
     color: #ffffff;
-    padding-top: 5px; 
+    padding-top: 40px; 
     min-height: 20px;
     border-bottom: #4b8683c9 2px solid;
 }
@@ -64,13 +106,9 @@ header{
     color: #ffffff;
 }
 
-header #branding{
+/* header #branding{
     float: left;
-}
-
-header #branding h1{
-    margin-bottom: 10;
-}
+} */
 
 .panel-body{
   border: #000;
