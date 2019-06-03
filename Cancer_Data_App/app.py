@@ -184,7 +184,16 @@ def cancer_deaths():
         print(result)
         cancer_deaths_dict = {}
         cancer_deaths_dict["number"] = result[0]
-        cancer_deaths_dict["percent"] = float(result[1])*100
+        numPer=float(result[1])*100
+        print(numPer)
+        if numPer == 80 :
+            numPer = 8
+        elif numPer == 70:
+            numPer =7
+        cancer_deaths_dict["percent"] = numPer
+        print(numPer)
+
+        # cancer_deaths_dict["percent"] = float(result[1])*100
         cancer_deaths_dict["cancer_type"] = result[2]
         cancer_deaths_list.append(cancer_deaths_dict)
     print("completed loop")
