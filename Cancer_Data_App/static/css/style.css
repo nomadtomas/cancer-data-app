@@ -10,9 +10,9 @@ body{
 #branding{
   position: absolute;
   top: 3%;
-  left:10%;
+  left:7%;
   transform: translate(-50%, -50%);
-  width: 17%;
+  width: 250px;
 }
 
 path{
