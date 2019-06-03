@@ -18,22 +18,22 @@ body{
 path{
   stroke:#fff;
   fill: #fff;
-  stroke-dasharray: 600; 
+  stroke-dasharray: 800; 
   opacity: 10;
-  animation: animate 5s cubic-bezier(0,0.10,1,.0001)
+  animation: animate 6s cubic-bezier(0,0.10,1,.0001)
 }
 
 @keyframes animate{
   0% {
     opacity: 0;
     fill: none;
-    stroke-dashoffset: 600;
+    stroke-dashoffset: 800;
   }
 
   30% {
     opacity: 0;
     fill: none;
-    stroke-dashoffset: 600;
+    stroke-dashoffset: 800;
   }
 
   90% {
