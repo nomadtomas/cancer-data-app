@@ -20,7 +20,7 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('JAWSDB_URL','') or "mysql+pymysql://root:Tomas1985t@localhost:3306/cancer"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('JAWSDB_URL','') or "mysql+pymysql://root:pwd@localhost:3306/cancer"
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '')
 
 db = SQLAlchemy(app)
